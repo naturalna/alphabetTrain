@@ -3,7 +3,6 @@ package my.startproject.datalayer;
 import java.util.ArrayList;
 
 import my.startproject.alphabettrain.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <GridView
+        android:id="@+id/testGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="218dp"
+        android:layout_margin="4dp"
+        android:layout_weight="0.57"
+        android:columnWidth="80dp"
+        android:gravity="left"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth" >
+    </GridView>
+
+    <Button
+        android:id="@+id/buttonReady"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@strig/ready" />
+
+</LinearLayout>

@@ -37,21 +37,27 @@ public final class R {
         public static final int SignupButton=0x7f090008;
         public static final int button1=0x7f090002;
         public static final int button2=0x7f090003;
-        public static final int buttonLearn=0x7f09000e;
-        public static final int buttonPlay=0x7f090011;
-        public static final int buttonProgress=0x7f090010;
-        public static final int buttonStop=0x7f090012;
-        public static final int buttonTests=0x7f09000f;
+        public static final int buttonLearn=0x7f090014;
+        public static final int buttonPlay=0x7f090017;
+        public static final int buttonProgress=0x7f090016;
+        public static final int buttonReady=0x7f090011;
+        public static final int buttonStop=0x7f090018;
+        public static final int buttonTests=0x7f090015;
         public static final int email=0x7f090005;
+        public static final int fragment_container=0x7f09000d;
         public static final int gridView1=0x7f090001;
-        public static final int item_image=0x7f09000c;
-        public static final int item_text=0x7f09000d;
+        public static final int item_image=0x7f09000e;
+        public static final int item_text=0x7f09000f;
         public static final int loginButton=0x7f09000b;
         public static final int password=0x7f09000a;
         public static final int password1=0x7f090006;
         public static final int password2=0x7f090007;
         public static final int resetButton=0x7f090009;
+        public static final int test=0x7f090013;
+        public static final int testGrid=0x7f090010;
         public static final int textView1=0x7f090000;
+        public static final int toggleButton1=0x7f09000c;
+        public static final int user_response=0x7f090012;
         public static final int userid=0x7f090004;
     }
     public static final class layout {
@@ -64,7 +70,9 @@ public final class R {
         public static final int activity_signin=0x7f030006;
         public static final int activity_tests=0x7f030007;
         public static final int alphabet=0x7f030008;
-        public static final int test=0x7f030009;
+        public static final int easy_fragment=0x7f030009;
+        public static final int easy_grid=0x7f03000a;
+        public static final int hard_fragment=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -87,6 +95,7 @@ public final class R {
         public static final int login=0x7f060011;
         public static final int pass=0x7f06000d;
         public static final int progress_activiti_title=0x7f06000a;
+        public static final int ready=0x7f060013;
         public static final int register=0x7f060010;
         public static final int reset=0x7f060012;
         public static final int signup=0x7f06000f;

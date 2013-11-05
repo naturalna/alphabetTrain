@@ -1,12 +1,12 @@
 package my.startproject.datalayer;
 
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseUser;
-
 import my.startproject.models.UserModelSingin;
 import my.testproject.allevents.EventManagerSignin;
 import my.testproject.allevents.ISigninListener;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class UserLoginRequests {
 	private UserModelSingin userLogin;

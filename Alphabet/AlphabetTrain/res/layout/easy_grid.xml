@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/user_response"
+        android:layout_below="@+id/user_response"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="22dp"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/bee" />
+
+    <EditText
+        android:id="@+id/user_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/item_image"
+        android:layout_below="@+id/item_image"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="text" />
+
+</RelativeLayout>

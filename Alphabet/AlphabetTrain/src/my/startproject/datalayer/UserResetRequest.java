@@ -1,12 +1,12 @@
 package my.startproject.datalayer;
 
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.RequestPasswordResetCallback;
-
 import my.startproject.models.UserModelReset;
 import my.testproject.allevents.EventManagerReset;
 import my.testproject.allevents.IPasswordReset;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 
 
 public class UserResetRequest {
