@@ -7,7 +7,7 @@
     <GridView
         android:id="@+id/testGrid"
         android:layout_width="wrap_content"
-        android:layout_height="218dp"
+        android:layout_height="0dip"
         android:layout_margin="4dp"
         android:layout_weight="0.57"
         android:columnWidth="80dp"
@@ -20,6 +20,6 @@
         android:id="@+id/buttonReady"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@strig/ready" />
+        android:text="@string/ready" />
 
 </LinearLayout>

@@ -21,17 +21,18 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int apple=0x7f020000;
-        public static final int bee=0x7f020001;
-        public static final int cherry=0x7f020002;
-        public static final int ic_action_learn=0x7f020003;
-        public static final int ic_action_no=0x7f020004;
-        public static final int ic_action_progress=0x7f020005;
-        public static final int ic_action_test=0x7f020006;
-        public static final int ic_action_yes=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int no=0x7f020009;
-        public static final int yes=0x7f02000a;
+        public static final int a=0x7f020000;
+        public static final int apple=0x7f020001;
+        public static final int bee=0x7f020002;
+        public static final int cherry=0x7f020003;
+        public static final int ic_action_learn=0x7f020004;
+        public static final int ic_action_no=0x7f020005;
+        public static final int ic_action_progress=0x7f020006;
+        public static final int ic_action_test=0x7f020007;
+        public static final int ic_action_yes=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int no=0x7f02000a;
+        public static final int yes=0x7f02000b;
     }
     public static final class id {
         public static final int SignupButton=0x7f090008;
@@ -42,6 +43,7 @@ public final class R {
         public static final int buttonProgress=0x7f090016;
         public static final int buttonReady=0x7f090011;
         public static final int buttonStop=0x7f090018;
+        public static final int buttonTest=0x7f090013;
         public static final int buttonTests=0x7f090015;
         public static final int email=0x7f090005;
         public static final int fragment_container=0x7f09000d;
@@ -53,7 +55,6 @@ public final class R {
         public static final int password1=0x7f090006;
         public static final int password2=0x7f090007;
         public static final int resetButton=0x7f090009;
-        public static final int test=0x7f090013;
         public static final int testGrid=0x7f090010;
         public static final int textView1=0x7f090000;
         public static final int toggleButton1=0x7f09000c;

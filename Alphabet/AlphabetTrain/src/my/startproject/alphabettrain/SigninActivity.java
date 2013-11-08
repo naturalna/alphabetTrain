@@ -11,51 +11,47 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SigninActivity extends Activity implements ISigninListener{
+public class SigninActivity extends Activity implements ISigninListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signin);
 	}
-	
+
 	EditText userid;
 	EditText password;
 	private ProgressDialog dialog = null;
-	
-	private String getUserid()
-	{
-		userid = (EditText)findViewById(R.id.userid);
+
+	private String getUserid() {
+		userid = (EditText) findViewById(R.id.userid);
 		return userid.getText().toString();
 	}
-	
-	private String getPassword()
-	{
-		password = (EditText)findViewById(R.id.password);
+
+	private String getPassword() {
+		password = (EditText) findViewById(R.id.password);
 		return password.getText().toString();
 	}
-	
-	public void login(View v)
-	{
-		//TODO validate and scripts
+
+	public void login(View v) {
+		// TODO validate and scripts
 		String sUserid = getUserid();
 		String sPassword = getPassword();
 		UserModelSingin user = new UserModelSingin(sUserid, sPassword);
-		
-		turnOnProgressDialog("Login","Wait while we log you in");
-		UserLoginRequests requests = new UserLoginRequests(SigninActivity.this, user);
+
+		turnOnProgressDialog("Login", "Wait while we log you in");
+		UserLoginRequests requests = new UserLoginRequests(SigninActivity.this,
+				user);
 		requests.Signin();
 	}
-	
-	private void turnOnProgressDialog(String title, String message)
-	{
-		this.dialog = ProgressDialog.show(this,title,message);
+
+	private void turnOnProgressDialog(String title, String message) {
+		this.dialog = ProgressDialog.show(this, title, message);
 	}
-		
-	private void turnOffProgressDialog()
-	{
+
+	private void turnOffProgressDialog() {
 		this.dialog.cancel();
 	}
-	
+
 	@Override
 	public void signinSucceed() {
 		this.turnOffProgressDialog();
@@ -66,14 +62,14 @@ public class SigninActivity extends Activity implements ISigninListener{
 	@Override
 	public void signinFaild() {
 		turnOffProgressDialog();
-		Toast.makeText(SigninActivity.this,"Login faild!",
-				Toast.LENGTH_LONG).show();
-		
+		Toast.makeText(SigninActivity.this, "Login faild!", Toast.LENGTH_LONG)
+				.show();
+
 	}
 
-	public void resetPassword(View v)
-	{
-		Intent homeIntent = new Intent(SigninActivity.this, RessetPasswordActivity.class);
+	public void resetPassword(View v) {
+		Intent homeIntent = new Intent(SigninActivity.this,
+				RessetPasswordActivity.class);
 		startActivity(homeIntent);
 	}
 }

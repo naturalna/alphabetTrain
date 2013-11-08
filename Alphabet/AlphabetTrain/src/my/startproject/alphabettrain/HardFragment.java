@@ -1,16 +1,17 @@
 package my.startproject.alphabettrain;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class HardFragment extends Fragment{
+	
+	public TextRecognition textRecognition;
+	
 	@Override
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		 super.onCreateView(inflater,container,savedInstanceState);
@@ -24,23 +25,15 @@ public class HardFragment extends Fragment{
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		 super.onActivityCreated(savedInstanceState);
-		 setText(); 
+		 textRecognition = new TextRecognition(this.getActivity().getBaseContext(), this);
+		// this.textRecognition = new TextRecognition(this.getActivity().getBaseContext(), this);
+		 
+		 Button button = (Button) getActivity().findViewById(R.id.buttonTest);
+
+		 button.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					textRecognition.getStartedTest();
+				}
+			});
 	}
-
-	  public void setText() {
-		  TextView v = (TextView) getView().findViewById(R.id.test);
-		   // SessionIdentifierGenerator gen = new SessionIdentifierGenerator();
-		  String text = "Harddddddd"; ///gen.nextSessionId();
-		  v.setText(text);
-	  }
-	  
-	  public final class SessionIdentifierGenerator
-	  {
-	    private SecureRandom random = new SecureRandom();
-
-	    public String nextSessionId()
-	    {
-	      return new BigInteger(130, random).toString(32);
-	    }
-	  }
 }

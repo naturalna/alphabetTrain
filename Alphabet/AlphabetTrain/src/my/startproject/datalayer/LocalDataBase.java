@@ -20,7 +20,9 @@ public class LocalDataBase {
 	      MySQLiteHelper.COLUMN_NAME, MySQLiteHelper.COLUMN_IMAGE };
 
 	  public LocalDataBase(Context context) {
+		//for dropping database 
 	    dbHelper = new MySQLiteHelper(context);
+	    
 	  }
 
 	  public void open() throws SQLException {
