@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +30,16 @@ public class TextRecognition {
 		ctx = context;
 		frag = fr;
 		
-		Uri imageUri = getOutputMediaFileUri();
-		imageFilePath = imageUri.getPath();
-		context.deleteFile(resultUrl);
 	}
 	
-	public void getStartedTest()
+	public void getStartedTest(Bitmap bmp ,ImageView imgView)
 	{
-		new AsyncProcessTask(frag).execute(this.imageFilePath, this.resultUrl);
+		
+		imgView.setImageBitmap(bmp);
+		Uri imageUri = getOutputMediaFileUri(bmp);
+		imageFilePath = imageUri.getPath();
+		ctx.deleteFile(resultUrl);
+	   new AsyncProcessTask(frag).execute(this.imageFilePath, this.resultUrl);
 	}
 	
 	public void updateResults() {
@@ -49,6 +53,8 @@ public class TextRecognition {
 			while ((text = bufReader.readLine()) != null) {
 				contents.append(text).append(System.getProperty("line.separator"));
 			}
+			
+			ResultString = contents.toString();
 			Toast.makeText(ctx,contents.toString() , Toast.LENGTH_LONG)
 			.show();
 			//displayMessage(contents.toString());
@@ -57,19 +63,22 @@ public class TextRecognition {
 		}
 	}
 	
-	private static Uri getOutputMediaFileUri(){
-	      return Uri.fromFile(getOutputMediaFile());
+	public String ResultString = "notReadyYet";
+	
+	
+ 	private static Uri getOutputMediaFileUri(Bitmap bmp){
+	      return Uri.fromFile(getOutputMediaFile(bmp));
 	}
 
-	private static File getOutputMediaFile(){
+	private static File getOutputMediaFile(Bitmap bmp){
 		String file_path = "img.png";
 		File file = new File(ctx.getFilesDir(), file_path);
 		FileOutputStream fOut;
 	
 		try {
 			fOut = new FileOutputStream(file);
-			 Bitmap bmp = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.a);
-				bmp.compress(Bitmap.CompressFormat.PNG, 85, fOut);
+			//Bitmap bmp1 = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.apple);
+				bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
 				fOut.flush();
 				fOut.close();
 		} catch (FileNotFoundException e) {

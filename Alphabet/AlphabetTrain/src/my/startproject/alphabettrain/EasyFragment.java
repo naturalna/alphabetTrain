@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 
 public class EasyFragment extends Fragment implements ITestRecived, IScoreReceived {
 
@@ -92,7 +93,8 @@ public class EasyFragment extends Fragment implements ITestRecived, IScoreReceiv
 
 	@Override
 	public void Faild() {
-		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(), "Error in getting all letters", Toast.LENGTH_LONG)
+		.show();
 	}
 
 	@Override

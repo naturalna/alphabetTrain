@@ -37,4 +37,14 @@
         android:orientation="horizontal" >
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/doublePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/fragment_container"
+        android:layout_alignTop="@+id/toggleButton1"
+        android:layout_marginRight="31dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cherry" />
+
 </RelativeLayout>

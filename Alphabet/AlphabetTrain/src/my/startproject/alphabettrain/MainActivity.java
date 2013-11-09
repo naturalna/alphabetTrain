@@ -44,7 +44,9 @@ public class MainActivity extends Activity  {
 	
 	public void loginClick(View v)
 	{
-		Intent homeIntent = new Intent(MainActivity.this, SigninActivity.class);
+		//Intent homeIntent = new Intent(MainActivity.this, SigninActivity.class);
+		//startActivity(homeIntent);
+		Intent homeIntent = new Intent(MainActivity.this, TestsActivity.class);
 		startActivity(homeIntent);
 	}
 		

@@ -57,6 +57,7 @@ public class SigninActivity extends Activity implements ISigninListener {
 		this.turnOffProgressDialog();
 		Intent homeIntent = new Intent(SigninActivity.this, HomeActivity.class);
 		startActivity(homeIntent);
+		
 	}
 
 	@Override

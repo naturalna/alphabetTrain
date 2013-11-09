@@ -21,4 +21,5 @@
     <string name="login">Login</string>
     <string name="reset">Send a Password Reset</string>
 	 <string name="ready">Ready</string>
+	 <string name="img">Image</string>
 </resources>
