@@ -8,6 +8,7 @@
     android:padding="5dp" >
 
     <TextView
+        android:textColor="#000000"
         android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +16,8 @@
         android:layout_below="@+id/user_response"
         android:layout_marginLeft="84dp"
         android:layout_marginTop="22dp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+       />
 
     <ImageView
         android:id="@+id/item_image"

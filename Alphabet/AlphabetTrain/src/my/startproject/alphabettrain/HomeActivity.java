@@ -1,6 +1,8 @@
 package my.startproject.alphabettrain;
 
 import java.util.List;
+
+import my.startproject.datalayer.ScoreRequests;
 import my.startproject.models.ScoreModel;
 import my.startproject.models.UserScoreModel;
 import my.testproject.allevents.IScoreReceived;
@@ -12,12 +14,15 @@ import android.widget.Toast;
 
 public class HomeActivity extends BaseActivity implements IScoreReceived {
 
+	private ScoreRequests requester = new ScoreRequests();
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
+		
+		requester.getUserScore(this);
+		
 		// TestRequests();
-
 	}
 
 	/*private void TestRequests() {
@@ -61,5 +66,24 @@ public class HomeActivity extends BaseActivity implements IScoreReceived {
 	public void rankListReceivedFaild(String errorMessage) {
 		Toast.makeText(HomeActivity.this, errorMessage, Toast.LENGTH_LONG)
 				.show();
+	}
+
+	@Override
+	public void scoreUserReceivedSucceed(UserScoreModel model) {
+
+		TextView helloUser = (TextView) this.findViewById(R.id.helloTV);
+		String greatings = "Hello, "+model.getUsername();
+		helloUser.setText(greatings);
+		
+		TextView points = (TextView) this.findViewById(R.id.pointTV);
+		String pointsText = "Points: "+ model.getPoints();
+		points.setText(pointsText);
+		
+	}
+
+	@Override
+	public void scoreUserReceivedFaild(String errorMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 }

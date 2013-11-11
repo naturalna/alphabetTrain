@@ -40,4 +40,15 @@ public class EventManagerScoreReceived {
         for (IScoreReceived listener : listeners)
         	listener.rankListReceivedFaild(errorMeggase);
     }
+    public void sayRecivedUserScore(UserScoreModel model) {
+        // Notify everybody that may be interested.
+        for (IScoreReceived listener : listeners)
+        	listener.scoreUserReceivedSucceed(model);
+    }
+    
+    public void sayRecivedFaildUserScore(String errorMeggase) {
+        // Notify everybody that may be interested.
+        for (IScoreReceived listener : listeners)
+        	listener.scoreUserReceivedFaild(errorMeggase);
+    }
 }

@@ -19,6 +19,8 @@ public class ScoreRequests {
 
 	private ParseObject scoresObject = null;
 	private ScoreModel uscoreModel = null;
+	private int updateScores = 0;
+	
 	private final EventManagerScoreReceived managerScores = new EventManagerScoreReceived();
 
 	public void getLastUserScores(IScoreReceived listener) {
@@ -63,8 +65,7 @@ public class ScoreRequests {
 		gameScore.put("Username", ParseUser.getCurrentUser().getUsername());
 		gameScore.saveInBackground();
 	}
-
-	private int updateScores = 0;
+	
 	private final EventManagerScoreReceived managerUpdateScores = new EventManagerScoreReceived();
 
 	public void updateScores(IScoreReceived listener, int sc) {
@@ -110,7 +111,7 @@ public class ScoreRequests {
 	}
 
 	private final EventManagerScoreReceived managerScoresRanklist = new EventManagerScoreReceived();
-	private List<UserScoreModel> list = new ArrayList<UserScoreModel>();
+	private List<UserScoreModel> list;
 
 	public void getTopTenByScore(IScoreReceived listener) {
 		managerScoresRanklist.addListener(listener);
@@ -120,7 +121,7 @@ public class ScoreRequests {
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> scoreList, ParseException e) {
 				if (e == null) {
-
+					list = new ArrayList<UserScoreModel>();
 					for (ParseObject item : scoreList) {
 						UserScoreModel model = new UserScoreModel(item
 								.getString("Username"), item.getInt("Points"));
@@ -130,6 +131,24 @@ public class ScoreRequests {
 					managerScoresRanklist.sayRecived(list);
 				} else {
 					managerUpdateScores.sayRecivedFaild(e.getMessage());
+				}
+				managerUpdateScores.Clear();
+			}
+		});
+	}
+
+	public void getUserScore(IScoreReceived listener) {
+		managerScoresRanklist.addListener(listener);
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Scores");
+		query.whereEqualTo("User", ParseUser.getCurrentUser());
+		query.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> scoreList, ParseException e) {
+				if (e == null) {	
+					ParseObject item = scoreList.get(0);
+					UserScoreModel model = new UserScoreModel(item.getString("Username"), item.getInt("Points"));
+					managerScoresRanklist.sayRecivedUserScore(model);
+				} else {
+					managerUpdateScores.sayRecivedFaildUserScore(e.getMessage());
 				}
 				managerUpdateScores.Clear();
 			}

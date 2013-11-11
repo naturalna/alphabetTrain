@@ -3,6 +3,7 @@ package my.startproject.alphabettrain;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+
 import my.startproject.datalayer.CacheLetters;
 import my.startproject.datalayer.CustomGridViewAdapter;
 import my.startproject.datalayer.Item;
@@ -24,7 +25,8 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
-public class EasyFragment extends Fragment implements ITestRecived, IScoreReceived {
+public class EasyFragment extends Fragment implements ITestRecived,
+		IScoreReceived {
 
 	private CacheLetters cache;
 	private List<Integer> positions;
@@ -72,8 +74,8 @@ public class EasyFragment extends Fragment implements ITestRecived, IScoreReceiv
 		gridView.setAdapter(customGridAdapter);
 
 		if (cache.getAreLettersCached() == false) {
-			
-			turnOnProgressDialog("Download", 
+
+			turnOnProgressDialog("Download",
 					"Since this is your first test it will take a few seconds before starting.");
 			requester = new LetterRequests();
 			requester.getImagecollectionTest(EasyFragment.this);
@@ -93,8 +95,8 @@ public class EasyFragment extends Fragment implements ITestRecived, IScoreReceiv
 
 	@Override
 	public void Faild() {
-		Toast.makeText(getActivity(), "Error in getting all letters", Toast.LENGTH_LONG)
-		.show();
+		Toast.makeText(getActivity(), "Error in getting all letters",
+				Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -128,15 +130,15 @@ public class EasyFragment extends Fragment implements ITestRecived, IScoreReceiv
 					.findViewById(R.id.user_response);
 			String text = editText.getText().toString();
 
-			// text = text.toUpperCase(Locale.ENGLISH)
+			//text = text.toUpperCase(Locale.ENGLISH);
 			if (text.equalsIgnoreCase(randomArray.get(i).getTitle())) {
 				this.points += 2;
 			}
 
 			editText.setText("");
 		}
-		String winPoints = "You win "+points +" points";
-		turnOnProgressDialog("Points",winPoints);
+		String winPoints = "You win " + points + " points";
+		turnOnProgressDialog("Points", winPoints);
 		UpdatePoints();
 		this.points = 0;
 	}
@@ -151,7 +153,7 @@ public class EasyFragment extends Fragment implements ITestRecived, IScoreReceiv
 		randomArray.clear();
 		CreateRandomTest();
 		FillRandomLetters(listcache);
-		 this.button.setEnabled(true);
+		this.button.setEnabled(true);
 	}
 
 	@Override
@@ -168,12 +170,24 @@ public class EasyFragment extends Fragment implements ITestRecived, IScoreReceiv
 	public void rankListReceivedFaild(String errorMessage) {
 		// TODO Auto-generated method stub
 	}
-	
+
 	private void turnOnProgressDialog(String title, String message) {
 		this.dialog = ProgressDialog.show(getActivity(), title, message);
 	}
 
 	private void turnOffProgressDialog() {
 		this.dialog.cancel();
+	}
+
+	@Override
+	public void scoreUserReceivedSucceed(UserScoreModel model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void scoreUserReceivedFaild(String errorMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -6,13 +6,30 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".HomeActivity" >
+    android:background="@drawable/login"
+    tools:context=".HomeActivity" 
+    android:textColor="#000000"
+    >
 
     <TextView
-        android:id="@+id/textView1"
+        android:textColor="#000000"
+        android:id="@+id/helloTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home_activiti_title"
-        android:textSize="18sp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/hello" />
+
+    <TextView
+        android:textColor="#000000"
+        android:id="@+id/pointTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/helloTV"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="63dp"
+        android:text="@string/points" />
 
 </RelativeLayout>

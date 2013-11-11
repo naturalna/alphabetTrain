@@ -2,32 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/login"
+    android:textColor="#000000" >
 
     <Button
         android:id="@+id/buttonTest"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ready" />
+
+    <Button
+        android:id="@+id/clearCanvas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clear" />
 	
-    <LinearLayout
+    <RelativeLayout
         
         android:id="@+id/canvasConteiner"
         android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-	 <ImageView
+
+        <ImageView
             android:id="@+id/testImage"
             android:layout_width="106dp"
             android:layout_height="106dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:contentDescription="@string/img"
             android:src="@drawable/bee" />
+
         <ImageView
             android:id="@+id/imgCanvas"
             android:layout_width="106dp"
             android:layout_height="106dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:contentDescription="@string/img"
             android:src="@drawable/bee" />
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

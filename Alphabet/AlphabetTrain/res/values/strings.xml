@@ -22,4 +22,7 @@
     <string name="reset">Send a Password Reset</string>
 	 <string name="ready">Ready</string>
 	 <string name="img">Image</string>
+	  <string name="hello">Hello</string>
+	  <string name="points">Points</string>
+	 <string name="clear">Clear</string>
 </resources>

@@ -79,4 +79,16 @@ public class ProgressActivity extends ListActivity implements IScoreReceived {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void scoreUserReceivedSucceed(UserScoreModel model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void scoreUserReceivedFaild(String errorMessage) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -6,9 +6,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/login"
+    android:textColor="#000000"
     tools:context=".TestsActivity" >
 
     <TextView
+        android:textColor="#000000"
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,13 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/textView1"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginLeft="14dp"
-        android:textOn="easy"
-    	android:textOff="hard"
-    	android:onClick="onToggleClicked"
-        />
+        android:onClick="onToggleClicked"
+        android:textOff="hard"
+        android:textOn="easy" />
 
     <LinearLayout
         android:id="@+id/fragment_container"
@@ -36,15 +37,5 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/doublePic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/fragment_container"
-        android:layout_alignTop="@+id/toggleButton1"
-        android:layout_marginRight="31dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/cherry" />
 
 </RelativeLayout>
