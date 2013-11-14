@@ -8,7 +8,7 @@
     android:padding="5dp" >
 
     <TextView
-        android:textColor="#000000"
+         android:textColor="#34C6CD"
         android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:contentDescription="@string/app_name"
@@ -36,6 +36,7 @@
         android:layout_below="@+id/item_image"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="text" 
+         android:textColor="#34C6CD"/>
 
 </RelativeLayout>

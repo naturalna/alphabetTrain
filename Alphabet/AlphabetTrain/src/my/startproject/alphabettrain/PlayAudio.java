@@ -18,6 +18,7 @@ public class PlayAudio extends Service{
 	}
  
 	public int onStartCommand(Intent intent, int flags, int startId){
+		
 		objPlayer.setLooping(true);
 		objPlayer.start();
 		Log.d(LOGCAT, "Media Player started!");

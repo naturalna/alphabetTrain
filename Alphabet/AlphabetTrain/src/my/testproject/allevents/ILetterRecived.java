@@ -1,6 +1,6 @@
 package my.testproject.allevents;
 
 public interface ILetterRecived {
-	public void SucceedLettersRecived();
+	public void SucceedLettersRecived(String letter);
 	public void FaildLettersRecived();
 }

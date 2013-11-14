@@ -8,11 +8,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/login"
     tools:context=".HomeActivity" 
-    android:textColor="#000000"
+     android:textColor="#34C6CD"
     >
 
     <TextView
-        android:textColor="#000000"
+        android:textColor="#34C6CD"
         android:id="@+id/helloTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,16 +20,18 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="15dp"
-        android:text="@string/hello" />
+        android:text="@string/hello"
+        android:textSize="25sp" />
 
     <TextView
-        android:textColor="#000000"
         android:id="@+id/pointTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/helloTV"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="63dp"
-        android:text="@string/points" />
+        android:layout_alignLeft="@+id/helloTV"
+        android:layout_below="@+id/helloTV"
+        android:layout_marginTop="18dp"
+        android:text="@string/points"
+        android:textColor="#34C6CD"
+        android:textSize="25sp" />
 
 </RelativeLayout>

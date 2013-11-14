@@ -18,7 +18,7 @@
 
     <!-- Userid  -->
     <TextView
-        android:textColor="#000000"
+        android:textColor="#34C6CD"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/userid" />
@@ -27,12 +27,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:textColor="#000000"
+         android:textColor="#34C6CD"
         />
     
     <!-- password1  -->
     <TextView
-        android:textColor="#000000"
+        android:textColor="#34C6CD"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/pass" />
@@ -41,7 +41,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:textColor="#000000"
+         android:textColor="#34C6CD"
         />
     
 

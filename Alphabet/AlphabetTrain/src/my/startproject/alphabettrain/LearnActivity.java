@@ -17,13 +17,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LearnActivity extends BaseActivity implements IdownloadedImage, TextToSpeech.OnInitListener{
 	
-	GridView gridView;
-    ArrayList<Item> gridArray = new ArrayList<Item>();
-    CustomGridViewAdapter customGridAdapter;
+	private GridView gridView;
+	private ArrayList<Item> gridArray = new ArrayList<Item>();
+	private CustomGridViewAdapter customGridAdapter;
     private LetterRequests requester;
     private String text;
     private TextToSpeech tts;
@@ -33,11 +34,14 @@ public class LearnActivity extends BaseActivity implements IdownloadedImage, Tex
 		setContentView(R.layout.activity_learn);
 		
 		FillGrid();
-		
+		try{
 		tts = new TextToSpeech(this, this);
 		tts.setLanguage(Locale.ENGLISH);
 		tts.setPitch(1);
 		tts.setSpeechRate(1);
+		}catch(Exception ex){
+			Toast.makeText(this, "Please restart and try again", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	private void FillGrid()

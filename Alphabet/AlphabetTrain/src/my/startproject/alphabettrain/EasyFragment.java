@@ -13,6 +13,7 @@ import my.startproject.models.ScoreModel;
 import my.startproject.models.UserScoreModel;
 import my.testproject.allevents.IScoreReceived;
 import my.testproject.allevents.ITestRecived;
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -23,8 +24,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("DefaultLocale")
 public class EasyFragment extends Fragment implements ITestRecived,
 		IScoreReceived {
 
@@ -122,7 +125,7 @@ public class EasyFragment extends Fragment implements ITestRecived,
 	}
 
 	private int points = 0;
-
+	
 	private void CalcPoints() {
 		for (int i = 0; i < gridView.getChildCount(); i++) {
 			View child = gridView.getChildAt(i);
@@ -140,6 +143,13 @@ public class EasyFragment extends Fragment implements ITestRecived,
 		String winPoints = "You win " + points + " points";
 		turnOnProgressDialog("Points", winPoints);
 		UpdatePoints();
+		
+		TextView points = (TextView) getActivity().findViewById(R.id.pointTV);
+		String txt = points.getText().toString();
+		txt = txt.trim();
+		int lastPoints = Integer.parseInt(txt );
+		String pointsText = " " + (lastPoints + this.points);
+		points.setText(pointsText);
 		this.points = 0;
 	}
 
@@ -158,17 +168,18 @@ public class EasyFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void scoreReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(), errorMessage.toString(),
+				Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void rankListReceivedSucceed(List<UserScoreModel> model) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void rankListReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(), errorMessage.toString(),
+				Toast.LENGTH_LONG).show();
 	}
 
 	private void turnOnProgressDialog(String title, String message) {
@@ -181,13 +192,12 @@ public class EasyFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void scoreUserReceivedSucceed(UserScoreModel model) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void scoreUserReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(), errorMessage.toString(),
+				Toast.LENGTH_LONG).show();
 		
 	}
 }

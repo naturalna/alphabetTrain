@@ -22,6 +22,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,12 +33,14 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class HardFragment extends Fragment implements ITestRecived,
 		IScoreReceived, ILetterRecived, OnTouchListener {
 
 	private static SecureRandom random = new SecureRandom();
 	private ScoreRequests requestScores = new ScoreRequests();
+
 	private ArrayList<Item> listcache = new ArrayList<Item>();
 	private ImageView imageView;
 	private Bitmap bitmap;
@@ -51,7 +55,6 @@ public class HardFragment extends Fragment implements ITestRecived,
 	private int randomPosition;
 	private ProgressDialog dialog = null;
 	private Activity activity;
-	private String result;
 	private Integer points = 0;
 	private Button button;
 
@@ -67,7 +70,8 @@ public class HardFragment extends Fragment implements ITestRecived,
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = this.getActivity();
-		textRecognition = new TextRecognition(this.activity.getBaseContext(), this);
+		textRecognition = new TextRecognition(this.activity.getBaseContext(),
+				this);
 
 		DrawCanvasTest();
 		CanvasImage();
@@ -80,16 +84,24 @@ public class HardFragment extends Fragment implements ITestRecived,
 				textRecognition.getStartedTest(bitmap);
 			}
 		});
-		Button buttonClear = (Button) getActivity().findViewById(R.id.clearCanvas);
+		Button buttonClear = (Button) getActivity().findViewById(
+				R.id.clearCanvas);
 
 		buttonClear.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				
-				bitmap = null;
-				bitmap = Bitmap.createBitmap((int) 100, (int) 100,
+				// bitmap.eraseColor(Color.BLACK);
+				bitmap = Bitmap.createBitmap((int) 150, (int) 150,
 						Bitmap.Config.ARGB_8888);
 				canvas = new Canvas(bitmap);
-				imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
+				path = new Path();
+				Paint clearPaint = new Paint();
+				clearPaint.setXfermode(new PorterDuffXfermode(
+						PorterDuff.Mode.CLEAR));
+				canvas.drawRect(0, 0, 0, 0, clearPaint);
+
+				canvas.drawColor(Color.WHITE);
+				imageView = (ImageView) getActivity().findViewById(
+						R.id.imgCanvas);
 				imageView.setImageBitmap(bitmap);
 			}
 		});
@@ -97,7 +109,7 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	public void CanvasImage() {
 		imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
-		bitmap = Bitmap.createBitmap((int) 100, (int) 100,
+		bitmap = Bitmap.createBitmap((int) 150, (int) 150,
 				Bitmap.Config.ARGB_8888);
 		canvas = new Canvas(bitmap);
 		canvas.drawColor(Color.WHITE);
@@ -107,7 +119,7 @@ public class HardFragment extends Fragment implements ITestRecived,
 		paint.setStrokeJoin(Paint.Join.ROUND);
 		paint.setStrokeCap(Paint.Cap.ROUND);
 		paint.setStrokeWidth(12);
-		
+
 		imageView.setImageBitmap(bitmap);
 
 		imageView.setOnTouchListener(this);
@@ -193,18 +205,24 @@ public class HardFragment extends Fragment implements ITestRecived,
 		this.dialog.cancel();
 	}
 
-	private void CalculatePoints(String wanted, String drawen) {
-		String text = drawen.toUpperCase(Locale.ENGLISH);
-		if (wanted.equals(text)) {
-			points = 10;
+	private void CalculatePoints(String result) {
+		String wantedUpper = imageItem.getTitle();
+		String wantedLower = wantedUpper.toLowerCase(Locale.ENGLISH);
+		this.points = 0;
+
+		if (result.contains(wantedUpper) || result.contains(wantedLower)) {
+			this.points = 10;
 		}
 
 		String winPoints = "You win " + points + " points";
-		
-		turnOnProgressDialog("Points",wanted+" find : "+text);
+		turnOnProgressDialog("Points", winPoints);
 
 		UpdatePoints();
-		points = 0;
+
+		TextView points = (TextView) getActivity().findViewById(R.id.pointTV);
+		int lastPoints = Integer.parseInt(points.getText().toString().trim());
+		String pointsText = " " + (lastPoints + this.points);
+		points.setText(pointsText);
 	}
 
 	private void UpdatePoints() {
@@ -216,10 +234,15 @@ public class HardFragment extends Fragment implements ITestRecived,
 		turnOffProgressDialog();
 		imageItem = null;
 		DrawCanvasTest();
-		bitmap = null;
-		bitmap = Bitmap.createBitmap((int) 100, (int) 100,
+
+		bitmap = Bitmap.createBitmap((int) 150, (int) 150,
 				Bitmap.Config.ARGB_8888);
 		canvas = new Canvas(bitmap);
+		path = new Path();
+		Paint clearPaint = new Paint();
+		clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+		canvas.drawRect(0, 0, 0, 0, clearPaint);
+		canvas.drawColor(Color.WHITE);
 		imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
 		imageView.setImageBitmap(bitmap);
 		this.button.setEnabled(true);
@@ -241,9 +264,8 @@ public class HardFragment extends Fragment implements ITestRecived,
 	}
 
 	@Override
-	public void SucceedLettersRecived() {
-		result = textRecognition.ResultString;
-		CalculatePoints(imageItem.getTitle(), result);
+	public void SucceedLettersRecived(String letter) {
+		CalculatePoints(letter);
 	}
 
 	@Override
@@ -254,8 +276,6 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void scoreUserReceivedSucceed(UserScoreModel model) {
-		// TODO Auto-generated method stub
-		// user scores are here
 	}
 
 	@Override

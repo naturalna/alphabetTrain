@@ -10,13 +10,9 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import my.testproject.allevents.EventManegerLetterRecived;
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +20,9 @@ public class TextRecognition {
 	private static Context ctx;
 	private String resultUrl = "result.txt";
 	private String imageFilePath = null;
-	TextView tv;
+	private TextView tv;
 	private static HardFragment frag;
-	EventManegerLetterRecived lettersRequest;
+	private EventManegerLetterRecived lettersRequest;
 
 	public TextRecognition(Context context, HardFragment fr) {
 		ctx = context;
@@ -59,7 +55,7 @@ public class TextRecognition {
 			ResultString = contents.toString().trim().charAt(0) +"";
 			
 			Toast.makeText(ctx,contents.toString(), Toast.LENGTH_LONG).show();
-			lettersRequest.saySucceed();
+			lettersRequest.saySucceed(contents.toString());
 			lettersRequest.Clear();
 			
 			// displayMessage(contents.toString());
@@ -81,9 +77,10 @@ public class TextRecognition {
 
 		try {
 			fOut = new FileOutputStream(file);
-			// Bitmap bmp1 = BitmapFactory.decodeResource(ctx.getResources(),
+			Bitmap resizedBitmap = Bitmap.createScaledBitmap(bmp, 100, 100, false);
 			// R.drawable.apple);
-			bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+			
+			resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
 			fOut.flush();
 			fOut.close();
 		} catch (FileNotFoundException e) {

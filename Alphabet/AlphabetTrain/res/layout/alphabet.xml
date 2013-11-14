@@ -19,6 +19,7 @@
     </ImageView>
 
     <TextView
+         android:textColor="#34C6CD"
         android:id="@+id/item_text"
         android:layout_marginTop="10dp"
         android:textSize="20sp"

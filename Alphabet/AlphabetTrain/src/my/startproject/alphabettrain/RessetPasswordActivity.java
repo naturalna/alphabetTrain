@@ -23,14 +23,17 @@ public class RessetPasswordActivity extends Activity implements IPasswordReset {
 	}
 
 	public void resetPassword(View v) {
-		String sEmail = email.getText().toString();
+		String sEmail = email.getText().toString().trim();
+		String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+		if(sEmail.matches(emailreg)){
 
-		UserModelReset user = new UserModelReset(sEmail);
-		UserResetRequest request = new UserResetRequest(
-				RessetPasswordActivity.this, user);
-		request.Reset();
-		turnOnProgressDialog("Reset",
-				"Please wait while we reset your password");
+			UserModelReset user = new UserModelReset(sEmail);
+			UserResetRequest request = new UserResetRequest(
+					RessetPasswordActivity.this, user);
+			request.Reset();
+			turnOnProgressDialog("Reset",
+					"Please wait while we reset your password");
+		}
 	}
 
 	private void turnOnProgressDialog(String title, String message) {

@@ -10,10 +10,10 @@ public class EventManegerLetterRecived {
         this.listeners.add(listener);
     }
 
-    public void saySucceed() {
+    public void saySucceed(String letter) {
         // Notify everybody that may be interested.
         for (ILetterRecived listener : listeners)
-        	listener.SucceedLettersRecived();
+        	listener.SucceedLettersRecived(letter);
     }
     
     public void Faild() {

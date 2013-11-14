@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">AlphabetTrain</string>
     <string name="action_settings">Settings</string>
     <string name="learn_activiti_title">Learn Activity</string>
@@ -10,19 +9,21 @@
     <string name="buttonPlay">Play</string>
     <string name="buttonStop">Stop</string>
     <string name="hello_world">Main Activity</string>
-     <string name="tests_activiti_title">Tests Activity</string>
+    <string name="tests_activiti_title">Tests Activity</string>
     <string name="progress_activiti_title">Progress Activity</string>
     <string name="home_activiti_title">Home Activity</string>
     <string name="userid">Username</string>
     <string name="pass">Password</string>
+    <string name="zero">0</string>
     <string name="email">E-mail</string>
     <string name="signup">SignUp</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="reset">Send a Password Reset</string>
-	 <string name="ready">Ready</string>
-	 <string name="img">Image</string>
-	  <string name="hello">Hello</string>
-	  <string name="points">Points</string>
-	 <string name="clear">Clear</string>
+    <string name="ready">Ready</string>
+    <string name="img">Image</string>
+    <string name="hello">Hello</string>
+    <string name="points">Points: </string>
+    <string name="clear">Clear</string>
+	<string name="logout">Logout</string>
 </resources>

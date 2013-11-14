@@ -143,9 +143,15 @@ public class ScoreRequests {
 		query.whereEqualTo("User", ParseUser.getCurrentUser());
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> scoreList, ParseException e) {
-				if (e == null) {	
-					ParseObject item = scoreList.get(0);
-					UserScoreModel model = new UserScoreModel(item.getString("Username"), item.getInt("Points"));
+				if (e == null) {
+					UserScoreModel model =null;
+					if (scoreList.isEmpty()) {
+						createUserScores(0, 0);
+						model = new UserScoreModel(ParseUser.getCurrentUser().getUsername(), 0);
+					} else {
+						ParseObject item = scoreList.get(0);
+						model = new UserScoreModel(item.getString("Username"), item.getInt("Points"));
+					}
 					managerScoresRanklist.sayRecivedUserScore(model);
 				} else {
 					managerUpdateScores.sayRecivedFaildUserScore(e.getMessage());

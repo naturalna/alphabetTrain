@@ -10,21 +10,37 @@
     android:textColor="#000000"
     tools:context=".TestsActivity" >
 
-    <TextView
-        android:textColor="#000000"
-        android:id="@+id/textView1"
+     <TextView
+        android:textColor="#34C6CD"
+        android:textSize="15sp"
+        android:id="@+id/helloTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tests_activiti_title"
-        android:textSize="18sp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/hello"
+         />
+
+    <TextView
+        android:textColor="#34C6CD"
+        android:id="@+id/pointTV"
+        android:text="@string/zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/helloTV"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="63dp"
+        android:textSize="15sp" />
 
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/fragment_container"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/helloTV"
         android:onClick="onToggleClicked"
         android:textOff="hard"
         android:textOn="easy" />
@@ -37,5 +53,17 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pointTV"
+        android:layout_alignBottom="@+id/pointTV"
+        android:layout_toLeftOf="@+id/pointTV"
+        android:text="@string/points" 
+        android:textColor="#34C6CD"
+        android:textSize="25sp"
+        />
 
 </RelativeLayout>

@@ -2,11 +2,16 @@ package my.startproject.alphabettrain;
 
 import java.util.List;
 
+import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseAnalytics;
+
 import my.startproject.datalayer.ScoreRequests;
 import my.startproject.models.ScoreModel;
 import my.startproject.models.UserScoreModel;
 import my.testproject.allevents.IScoreReceived;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -19,19 +24,23 @@ public class HomeActivity extends BaseActivity implements IScoreReceived {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		
+		InitializeParse();
 		requester.getUserScore(this);
-		
-		// TestRequests();
 	}
-
-	/*private void TestRequests() {
-		// Test
-		ScoreRequests requester = new ScoreRequests();
-		requester.getLastUserScores(HomeActivity.this);
-		requester.updateScores(HomeActivity.this, 15);
-		requester.getTopTenByScore(HomeActivity.this);
-	}*/
+	
+	private void InitializeParse()
+	{
+				Parse.initialize(this, "QWbsGCAcrzn8p7OCjnX4K4MJFPTJQm62n8sHhnoc", 
+						"6CoYnYg8ECKdqkJJThlnK8N1tNp0IAs0x0RDLxTw"); 
+				ParseAnalytics.trackAppOpened(getIntent());
+				
+				// This allows read access to all objects
+				ParseACL defaultACL = new ParseACL();
+				defaultACL.setPublicReadAccess(true);
+				ParseACL.setDefaultACL(defaultACL, true);
+				Log.d("ParseApplication", "initializing app complete");
+				
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,7 +79,7 @@ public class HomeActivity extends BaseActivity implements IScoreReceived {
 
 	@Override
 	public void scoreUserReceivedSucceed(UserScoreModel model) {
-
+		try{
 		TextView helloUser = (TextView) this.findViewById(R.id.helloTV);
 		String greatings = "Hello, "+model.getUsername();
 		helloUser.setText(greatings);
@@ -78,12 +87,18 @@ public class HomeActivity extends BaseActivity implements IScoreReceived {
 		TextView points = (TextView) this.findViewById(R.id.pointTV);
 		String pointsText = "Points: "+ model.getPoints();
 		points.setText(pointsText);
-		
+		}
+		catch(Exception ex )
+		{
+			System.out.println("Exception thrown  :" + ex);
+			Toast.makeText(HomeActivity.this, "Error! Please restart and try again.",
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
 	public void scoreUserReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(HomeActivity.this, errorMessage,
+				Toast.LENGTH_LONG).show();
 	}
 }

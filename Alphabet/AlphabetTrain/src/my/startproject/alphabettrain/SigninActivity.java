@@ -18,30 +18,59 @@ public class SigninActivity extends Activity implements ISigninListener {
 		setContentView(R.layout.activity_signin);
 	}
 
-	EditText userid;
-	EditText password;
+	private EditText userid;
+	private EditText password;
+	private Boolean isValid = true;
 	private ProgressDialog dialog = null;
 
 	private String getUserid() {
 		userid = (EditText) findViewById(R.id.userid);
-		return userid.getText().toString();
+		return userid.getText().toString().trim();
 	}
 
 	private String getPassword() {
 		password = (EditText) findViewById(R.id.password);
-		return password.getText().toString();
+		return password.getText().toString().trim();
+	}
+	
+	private boolean Validate(String username, String password)
+	{
+		String regex = "^[a-zA-Z]+$";
+		
+		if(username.length() < 5)
+		{
+			this.isValid = false;
+		}
+		if(!username.matches(regex)){
+			this.isValid = false;
+		}
+		if(password.length() < 5)
+		{
+			this.isValid = false;
+		}
+		if(!password.matches(regex)){
+			this.isValid = false;
+		}
+		
+		return true;
 	}
 
 	public void login(View v) {
-		// TODO validate and scripts
 		String sUserid = getUserid();
 		String sPassword = getPassword();
+		
+		this.Validate(sUserid, sPassword);
+		if(this.isValid){
 		UserModelSingin user = new UserModelSingin(sUserid, sPassword);
 
 		turnOnProgressDialog("Login", "Wait while we log you in");
 		UserLoginRequests requests = new UserLoginRequests(SigninActivity.this,
 				user);
 		requests.Signin();
+		}else{
+			this.isValid = true;
+			Toast.makeText(this,"Login faild!Incorrect username or password", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	private void turnOnProgressDialog(String title, String message) {
