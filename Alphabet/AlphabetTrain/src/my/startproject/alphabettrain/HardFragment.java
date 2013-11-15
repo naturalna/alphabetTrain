@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HardFragment extends Fragment implements ITestRecived,
 		IScoreReceived, ILetterRecived, OnTouchListener {
@@ -84,12 +85,13 @@ public class HardFragment extends Fragment implements ITestRecived,
 				textRecognition.getStartedTest(bitmap);
 			}
 		});
+		
 		Button buttonClear = (Button) getActivity().findViewById(
 				R.id.clearCanvas);
 
 		buttonClear.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// bitmap.eraseColor(Color.BLACK);
+				try{
 				bitmap = Bitmap.createBitmap((int) 150, (int) 150,
 						Bitmap.Config.ARGB_8888);
 				canvas = new Canvas(bitmap);
@@ -103,11 +105,15 @@ public class HardFragment extends Fragment implements ITestRecived,
 				imageView = (ImageView) getActivity().findViewById(
 						R.id.imgCanvas);
 				imageView.setImageBitmap(bitmap);
+				} catch (Exception ex) {
+					Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 	}
 
 	public void CanvasImage() {
+		try{
 		imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
 		bitmap = Bitmap.createBitmap((int) 150, (int) 150,
 				Bitmap.Config.ARGB_8888);
@@ -123,6 +129,9 @@ public class HardFragment extends Fragment implements ITestRecived,
 		imageView.setImageBitmap(bitmap);
 
 		imageView.setOnTouchListener(this);
+		} catch (Exception ex) {
+			Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
@@ -232,6 +241,7 @@ public class HardFragment extends Fragment implements ITestRecived,
 	@Override
 	public void scoreReceivedSucceed(ScoreModel model) {
 		turnOffProgressDialog();
+		try{
 		imageItem = null;
 		DrawCanvasTest();
 
@@ -246,21 +256,24 @@ public class HardFragment extends Fragment implements ITestRecived,
 		imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
 		imageView.setImageBitmap(bitmap);
 		this.button.setEnabled(true);
+		} catch (Exception ex) {
+			Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
 	public void scoreReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
+		Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void rankListReceivedSucceed(List<UserScoreModel> model) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void rankListReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
+		Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -270,8 +283,7 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void FaildLettersRecived() {
-		// TODO Auto-generated method stub
-
+		Toast.makeText(activity, "Lrtters not recived", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -280,8 +292,6 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void scoreUserReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
-
+		Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show();
 	}
-
 }

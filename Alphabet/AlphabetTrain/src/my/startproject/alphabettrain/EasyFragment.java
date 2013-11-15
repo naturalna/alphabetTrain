@@ -69,6 +69,7 @@ public class EasyFragment extends Fragment implements ITestRecived,
 	}
 
 	public void FillGrid() {
+		try{
 		randomArray.clear();
 		CreateRandomTest();
 		gridView = (GridView) getActivity().findViewById(R.id.testGrid);
@@ -86,6 +87,9 @@ public class EasyFragment extends Fragment implements ITestRecived,
 
 			listcache = (ArrayList<Item>) this.cache.getItems();
 			FillRandomLetters(listcache);
+		}
+		} catch (Exception ex) {
+			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -127,6 +131,7 @@ public class EasyFragment extends Fragment implements ITestRecived,
 	private int points = 0;
 	
 	private void CalcPoints() {
+		try{
 		for (int i = 0; i < gridView.getChildCount(); i++) {
 			View child = gridView.getChildAt(i);
 			EditText editText = (EditText) child
@@ -151,6 +156,9 @@ public class EasyFragment extends Fragment implements ITestRecived,
 		String pointsText = " " + (lastPoints + this.points);
 		points.setText(pointsText);
 		this.points = 0;
+		} catch (Exception ex) {
+			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	private void UpdatePoints() {
@@ -198,6 +206,5 @@ public class EasyFragment extends Fragment implements ITestRecived,
 	public void scoreUserReceivedFaild(String errorMessage) {
 		Toast.makeText(getActivity(), errorMessage.toString(),
 				Toast.LENGTH_LONG).show();
-		
 	}
 }

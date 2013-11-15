@@ -48,11 +48,15 @@ public class LearnActivity extends BaseActivity implements IdownloadedImage, Tex
 	{
 		requester = new LetterRequests();
 		requester.getImagecollection(LearnActivity.this);
-			
+		try{	
         gridView = (GridView) findViewById(R.id.gridView1);
         customGridAdapter = new CustomGridViewAdapter(this, R.layout.alphabet, gridArray);
         gridView.setAdapter(customGridAdapter);
-        
+		}
+		catch(Exception ex){
+			Toast.makeText(LearnActivity.this, ex.toString(),
+					Toast.LENGTH_LONG).show();
+		}
         gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				text =(String)((TextView) v.findViewById(R.id.item_text)).getText();

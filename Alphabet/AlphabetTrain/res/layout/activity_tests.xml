@@ -11,6 +11,11 @@
     tools:context=".TestsActivity" >
 
      <TextView
+         android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
         android:textColor="#34C6CD"
         android:textSize="15sp"
         android:id="@+id/helloTV"
@@ -22,17 +27,6 @@
         android:layout_marginTop="15dp"
         android:text="@string/hello"
          />
-
-    <TextView
-        android:textColor="#34C6CD"
-        android:id="@+id/pointTV"
-        android:text="@string/zero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/helloTV"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="63dp"
-        android:textSize="15sp" />
 
     <ToggleButton
         android:id="@+id/toggleButton1"
@@ -63,7 +57,18 @@
         android:layout_toLeftOf="@+id/pointTV"
         android:text="@string/points" 
         android:textColor="#34C6CD"
-        android:textSize="25sp"
+        android:textSize="15sp"
         />
+
+    <TextView
+        android:id="@+id/pointTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/toggleButton1"
+        android:layout_alignRight="@+id/toggleButton1"
+        android:layout_marginRight="32dp"
+        android:text="@string/zero"
+        android:textColor="#34C6CD"
+        android:textSize="15sp" />
 
 </RelativeLayout>

@@ -31,7 +31,7 @@ public class AsyncProcessTask extends AsyncTask<String, String, Boolean> {
 		if (dialog.isShowing()) {
 			dialog.dismiss();
 		}
-		
+
 		activity.textRecognition.updateResults();
 	}
 
@@ -43,80 +43,91 @@ public class AsyncProcessTask extends AsyncTask<String, String, Boolean> {
 
 		try {
 			Client restClient = new Client();
-			
-			//TODO
-			//!!! Please provide credentials and remove this line. !!!
-			
+
+			// TODO
+			// !!! Please provide credentials and remove this line. !!!
+
 			// Name of application you created
 			restClient.applicationId = "TrainLetters";
-			// You should get e-mail from ABBYY Cloud OCR SDK service with the application password
+			// You should get e-mail from ABBYY Cloud OCR SDK service with the
+			// application password
 			restClient.password = "JkmSKJq22xGwDSnMJ3kKMFgz";
-			
-			// Obtain installation id when running the application for the first time
-			SharedPreferences settings = activity.getActivity().getPreferences(Activity.MODE_PRIVATE);
+
+			// Obtain installation id when running the application for the first
+			// time
+			SharedPreferences settings = activity.getActivity().getPreferences(
+					Activity.MODE_PRIVATE);
 			String instIdName = "installationId";
-			if( !settings.contains(instIdName)) {
+			if (!settings.contains(instIdName)) {
 				// Get installation id from server using device id
-				String deviceId = android.provider.Settings.Secure.getString(activity.getActivity().getContentResolver(), 
+				String deviceId = android.provider.Settings.Secure.getString(
+						activity.getActivity().getContentResolver(),
 						android.provider.Settings.Secure.ANDROID_ID);
-				
+
 				// Obtain installation id from server
-				publishProgress( "First run: obtaining installation id..");
-				String installationId = restClient.activateNewInstallation(deviceId);
-				publishProgress( "Done. Installation id is '" + installationId + "'");
-				
+				publishProgress("First run: obtaining installation id..");
+				String installationId = restClient
+						.activateNewInstallation(deviceId);
+				publishProgress("Done. Installation id is '" + installationId
+						+ "'");
+
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putString(instIdName, installationId);
 				editor.commit();
-			} 
-			
+			}
+
 			String installationId = settings.getString(instIdName, "");
 			restClient.applicationId += installationId;
-			
-			publishProgress( "Uploading image...");
-			
-			String language = "English"; // Comma-separated list: Japanese,English or German,French,Spanish etc.
-			
+
+			publishProgress("Uploading image...");
+
+			String language = "English"; // Comma-separated list:
+											// Japanese,English or
+											// German,French,Spanish etc.
+
 			ProcessingSettings processingSettings = new ProcessingSettings();
-			processingSettings.setOutputFormat( ProcessingSettings.OutputFormat.txt );
+			processingSettings
+					.setOutputFormat(ProcessingSettings.OutputFormat.txt);
 			processingSettings.setLanguage(language);
-			
+
 			publishProgress("Uploading..");
 
 			// If you want to process business cards, uncomment this
 			/*
-			BusCardSettings busCardSettings = new BusCardSettings();
-			busCardSettings.setLanguage(language);
-			busCardSettings.setOutputFormat(BusCardSettings.OutputFormat.xml);
-			Task task = restClient.processBusinessCard(filePath, busCardSettings);
-			*/
+			 * BusCardSettings busCardSettings = new BusCardSettings();
+			 * busCardSettings.setLanguage(language);
+			 * busCardSettings.setOutputFormat
+			 * (BusCardSettings.OutputFormat.xml); Task task =
+			 * restClient.processBusinessCard(filePath, busCardSettings);
+			 */
 			Task task = restClient.processImage(inputFile, processingSettings);
-			
-			while( task.isTaskActive() ) {
+
+			while (task.isTaskActive()) {
 				Thread.sleep(2000);
-				
-				publishProgress( "Waiting.." );
+
+				publishProgress("Waiting..");
 				task = restClient.getTaskStatus(task.Id);
 			}
-			
-			if( task.Status == Task.TaskStatus.Completed ) {
-				publishProgress( "Downloading.." );
-				FileOutputStream fos = activity.getActivity().openFileOutput(outputFile,Context.MODE_PRIVATE);
-				
+
+			if (task.Status == Task.TaskStatus.Completed) {
+				publishProgress("Downloading..");
+				FileOutputStream fos = activity.getActivity().openFileOutput(
+						outputFile, Context.MODE_PRIVATE);
+
 				restClient.downloadResult(task, fos);
-				
+
 				fos.close();
-				
-				publishProgress( "Ready" );
-			} else if( task.Status == Task.TaskStatus.NotEnoughCredits ) {
-				publishProgress( "Not enough credits to process task. Add more pages to your application's account." );
+
+				publishProgress("Ready");
+			} else if (task.Status == Task.TaskStatus.NotEnoughCredits) {
+				publishProgress("Not enough credits to process task. Add more pages to your application's account.");
 			} else {
-				publishProgress( "Task failed" );
+				publishProgress("Task failed");
 			}
-			
+
 			return true;
 		} catch (Exception e) {
-			publishProgress( "Error: " + e.getMessage());
+			publishProgress("Error: " + e.getMessage());
 			return false;
 		}
 	}

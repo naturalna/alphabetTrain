@@ -9,6 +9,7 @@ import com.parse.ParseAnalytics;
 import my.startproject.datalayer.ScoreRequests;
 import my.startproject.models.ScoreModel;
 import my.startproject.models.UserScoreModel;
+import my.startproject.utilities.Typewriter;
 import my.testproject.allevents.IScoreReceived;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,12 +21,13 @@ import android.widget.Toast;
 public class HomeActivity extends BaseActivity implements IScoreReceived {
 
 	private ScoreRequests requester = new ScoreRequests();
-	
+	private Typewriter writer;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		InitializeParse();
 		requester.getUserScore(this);
+		
 	}
 	
 	private void InitializeParse()
@@ -56,6 +58,7 @@ public class HomeActivity extends BaseActivity implements IScoreReceived {
 	@Override
 	public void scoreReceivedSucceed(ScoreModel model) {
 		TextView tv = (TextView) findViewById(R.id.textView1);
+		
 		tv.setText(model.getPoints() + " Level: " + model.getLevel());
 	}
 
@@ -82,11 +85,18 @@ public class HomeActivity extends BaseActivity implements IScoreReceived {
 		try{
 		TextView helloUser = (TextView) this.findViewById(R.id.helloTV);
 		String greatings = "Hello, "+model.getUsername();
-		helloUser.setText(greatings);
-		
+		//helloUser.setText(greatings);
+		writer = new Typewriter(this,helloUser);
+		writer.setCharacterDelay(100);
+	    writer.animateText(greatings);
+	    
 		TextView points = (TextView) this.findViewById(R.id.pointTV);
 		String pointsText = "Points: "+ model.getPoints();
-		points.setText(pointsText);
+		//points.setText(pointsText);
+		writer = new Typewriter(this,points);
+		writer.setCharacterDelay(100);
+	    writer.animateText(pointsText);
+	    
 		}
 		catch(Exception ex )
 		{

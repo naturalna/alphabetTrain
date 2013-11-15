@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class TestsActivity extends BaseActivity implements IScoreReceived {
@@ -22,21 +23,24 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 	private FragmentManager fragmentManager;
 	private EasyFragment fragmentEasy;
 	private HardFragment fragmentHard;
-	//public final TextRecognition textRecognition = new TextRecognition(this.getBaseContext(), this);
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tests);
 
 		requestUserScores.getUserScore(this);
-		
+
 		this.fragmentManager = getFragmentManager();
 		this.fragmentHard = new HardFragment();
 		this.fragmentEasy = new EasyFragment();
 
 		if (savedInstanceState == null) {
-			initEasyFragment();
-			initHardFragment();
+			try {
+				initEasyFragment();
+				initHardFragment();
+			} catch (Exception ex) {
+				Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 
@@ -72,63 +76,68 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 		boolean on = ((ToggleButton) view).isChecked();
 
 		if (on) {
-			//dropDB();
-			this.fragmentTransaction = fragmentManager.beginTransaction();
-			fragmentTransaction.detach(this.fragmentHard);
-			fragmentTransaction.attach(this.fragmentEasy);
-			// fragmentTransaction.add(R.id.fragment_container, fragmentEasy);
-			fragmentTransaction.commit();
+			// dropDB();
+			try {
+				this.fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.detach(this.fragmentHard);
+				fragmentTransaction.attach(this.fragmentEasy);
+				// fragmentTransaction.add(R.id.fragment_container,
+				// fragmentEasy);
+				fragmentTransaction.commit();
+			} catch (Exception ex) {
+				Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
+			}
 		} else {
-			this.fragmentTransaction = fragmentManager.beginTransaction();
-			fragmentTransaction.detach(this.fragmentEasy);
-			fragmentTransaction.attach(this.fragmentHard);
-			fragmentTransaction.commit();
+			try {
+				this.fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.detach(this.fragmentEasy);
+				fragmentTransaction.attach(this.fragmentHard);
+				fragmentTransaction.commit();
+			} catch (Exception ex) {
+				Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
+			}
 		}
 	}
-	
-	public void dropDB()
-	{
-		 this.deleteDatabase(MySQLiteHelper.DATABASE_NAME);
+
+	public void dropDB() {
+		this.deleteDatabase(MySQLiteHelper.DATABASE_NAME);
 	}
 
 	@Override
 	public void scoreReceivedSucceed(ScoreModel model) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void scoreReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void rankListReceivedSucceed(List<UserScoreModel> model) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void rankListReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void scoreUserReceivedSucceed(UserScoreModel model) {
-		TextView helloUser = (TextView) findViewById(R.id.helloTV);
-		String greatings = "Hello, "+model.getUsername();
-		helloUser.setText(greatings);
-		
-		TextView points = (TextView) findViewById(R.id.pointTV);
-		String pointsText = " "+ model.getPoints();
-		points.setText(pointsText);
+		try {
+			TextView helloUser = (TextView) findViewById(R.id.helloTV);
+			String greatings = "Hello, " + model.getUsername();
+			helloUser.setText(greatings);
+
+			TextView points = (TextView) findViewById(R.id.pointTV);
+			String pointsText = " " + model.getPoints();
+			points.setText(pointsText);
+		} catch (Exception ex) {
+			Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
 	public void scoreUserReceivedFaild(String errorMessage) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 	}
 }

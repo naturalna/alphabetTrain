@@ -46,7 +46,7 @@ public class BaseActivity extends Activity {
 			UserLogout.logout();
 			Intent intentLogout = new Intent(BaseActivity.this,
 					MainActivity.class);
-			stopService(intentLogout);
+			startActivity(intentLogout);
 			return true;
 
 		default:

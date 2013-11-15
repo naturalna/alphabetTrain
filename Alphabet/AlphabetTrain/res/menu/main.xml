@@ -18,11 +18,11 @@
         android:orderInCategory="300"
         android:showAsAction="never"
         android:title="@string/buttonProgress"/>
-    <item
+     <item
         android:icon="@drawable/logout"
         android:id="@+id/buttonLogout"
         android:orderInCategory="400"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="never"
         android:title="@string/logout"/>
      <item
         android:icon="@drawable/ic_action_yes"
@@ -36,5 +36,6 @@
         android:orderInCategory="600"
         android:showAsAction="ifRoom|withText"
         android:title="@string/buttonStop"/>
+      
 
 </menu>

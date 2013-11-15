@@ -20,7 +20,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="15dp"
-        android:text="@string/hello"
         android:textSize="25sp" />
 
     <TextView
@@ -30,7 +29,6 @@
         android:layout_alignLeft="@+id/helloTV"
         android:layout_below="@+id/helloTV"
         android:layout_marginTop="18dp"
-        android:text="@string/points"
         android:textColor="#34C6CD"
         android:textSize="25sp" />
 

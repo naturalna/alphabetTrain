@@ -1,6 +1,7 @@
 package my.startproject.alphabettrain;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,10 +37,13 @@ public class MainActivity extends Activity  {
 				
 	}
 
-	public void registerClick(View v)
+	public void registerClick(View view)
 	{
 		Intent homeIntent = new Intent(MainActivity.this, RegisterActivity.class);
-		startActivity(homeIntent);
+		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(view, 0,
+				0, view.getWidth(), view.getHeight());
+		//startActivity(homeIntent);
+		startActivity(homeIntent, options.toBundle());
 	}
 	
 	public void loginClick(View v)
