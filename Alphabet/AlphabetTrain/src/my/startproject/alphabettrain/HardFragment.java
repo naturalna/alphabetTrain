@@ -4,7 +4,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import my.startproject.datalayer.CacheLetters;
 import my.startproject.datalayer.Item;
 import my.startproject.datalayer.LetterRequests;
@@ -227,7 +226,11 @@ public class HardFragment extends Fragment implements ITestRecived,
 		turnOnProgressDialog("Points", winPoints);
 
 		UpdatePoints();
+		
+		fillTextViewPoints();
+	}
 
+	private void fillTextViewPoints() {
 		TextView points = (TextView) getActivity().findViewById(R.id.pointTV);
 		int lastPoints = Integer.parseInt(points.getText().toString().trim());
 		String pointsText = " " + (lastPoints + this.points);

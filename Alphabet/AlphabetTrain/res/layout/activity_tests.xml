@@ -55,7 +55,7 @@
         android:layout_alignBaseline="@+id/pointTV"
         android:layout_alignBottom="@+id/pointTV"
         android:layout_toLeftOf="@+id/pointTV"
-        android:text="@string/points" 
+        
         android:textColor="#34C6CD"
         android:textSize="15sp"
         />

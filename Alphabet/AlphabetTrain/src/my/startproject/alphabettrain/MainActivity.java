@@ -46,12 +46,13 @@ public class MainActivity extends Activity  {
 		startActivity(homeIntent, options.toBundle());
 	}
 	
-	public void loginClick(View v)
+	public void loginClick(View view)
 	{
 		Intent homeIntent = new Intent(MainActivity.this, SigninActivity.class);
-		startActivity(homeIntent);
-		//Intent homeIntent = new Intent(MainActivity.this, TestsActivity.class);
+		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(view, 0,
+				0, view.getWidth(), view.getHeight());
 		//startActivity(homeIntent);
+		startActivity(homeIntent, options.toBundle());
 	}
 		
 }

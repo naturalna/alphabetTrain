@@ -4,6 +4,7 @@ import my.startproject.datalayer.UserLoginRequests;
 import my.startproject.models.UserModelSingin;
 import my.testproject.allevents.ISigninListener;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,7 +56,9 @@ public class SigninActivity extends Activity implements ISigninListener {
 		return true;
 	}
 
+	private View view;
 	public void login(View v) {
+		view = v;
 		String sUserid = getUserid();
 		String sPassword = getPassword();
 		
@@ -85,8 +88,10 @@ public class SigninActivity extends Activity implements ISigninListener {
 	public void signinSucceed() {
 		this.turnOffProgressDialog();
 		Intent homeIntent = new Intent(SigninActivity.this, HomeActivity.class);
-		startActivity(homeIntent);
-		
+		//startActivity(homeIntent);
+		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(view, 0,
+				0, view.getWidth(), view.getHeight());
+		startActivity(homeIntent, options.toBundle());
 	}
 
 	@Override
@@ -100,6 +105,9 @@ public class SigninActivity extends Activity implements ISigninListener {
 	public void resetPassword(View v) {
 		Intent homeIntent = new Intent(SigninActivity.this,
 				RessetPasswordActivity.class);
-		startActivity(homeIntent);
+		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(v, 0,
+				0, v.getWidth(), v.getHeight());
+		startActivity(homeIntent, options.toBundle());
+		//startActivity(homeIntent);
 	}
 }

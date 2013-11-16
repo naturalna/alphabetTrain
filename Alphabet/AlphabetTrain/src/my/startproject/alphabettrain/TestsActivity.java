@@ -6,6 +6,7 @@ import my.startproject.datalayer.MySQLiteHelper;
 import my.startproject.datalayer.ScoreRequests;
 import my.startproject.models.ScoreModel;
 import my.startproject.models.UserScoreModel;
+import my.startproject.utilities.Typewriter;
 import my.testproject.allevents.IScoreReceived;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -23,7 +24,8 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 	private FragmentManager fragmentManager;
 	private EasyFragment fragmentEasy;
 	private HardFragment fragmentHard;
-
+	private Typewriter writer;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tests);
@@ -66,7 +68,6 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 		return true;
 	}
 
-	// @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		return super.onOptionsItemSelected(item);
 	}
@@ -81,8 +82,6 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 				this.fragmentTransaction = fragmentManager.beginTransaction();
 				fragmentTransaction.detach(this.fragmentHard);
 				fragmentTransaction.attach(this.fragmentEasy);
-				// fragmentTransaction.add(R.id.fragment_container,
-				// fragmentEasy);
 				fragmentTransaction.commit();
 			} catch (Exception ex) {
 				Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
@@ -126,13 +125,22 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 		try {
 			TextView helloUser = (TextView) findViewById(R.id.helloTV);
 			String greatings = "Hello, " + model.getUsername();
-			helloUser.setText(greatings);
-
+			//helloUser.setText(greatings);
+			writer = new Typewriter(this, helloUser);
+			writer.setCharacterDelay(100);
+			writer.animateText(greatings);
+			
+			TextView pointsTextView = (TextView) findViewById(R.id.textLabel);
+			String pointsGreating = "Points:";
+			writer = new Typewriter(this, pointsTextView);
+			writer.setCharacterDelay(100);
+			writer.animateText(pointsGreating);
+			
 			TextView points = (TextView) findViewById(R.id.pointTV);
 			String pointsText = " " + model.getPoints();
 			points.setText(pointsText);
 		} catch (Exception ex) {
-			Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "User points not calculate! Please restart!", Toast.LENGTH_LONG).show();
 		}
 	}
 
