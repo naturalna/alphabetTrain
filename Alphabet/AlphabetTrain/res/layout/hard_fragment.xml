@@ -18,33 +18,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/clear" />
-	
+
     <RelativeLayout
-        
         android:id="@+id/canvasConteiner"
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.02"
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/imgCanvas"
-            android:layout_width="106sp"
-            android:layout_height="106sp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/img"
-            android:src="@drawable/bee" />
-
-        <ImageView
-            android:layout_marginLeft="5sp"
             android:id="@+id/testImage"
             android:layout_width="106dp"
             android:layout_height="106dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="15sp"
             android:contentDescription="@string/img"
             android:src="@drawable/bee" />
 
+        <ImageView
+            android:id="@+id/imgCanvas"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/testImage"
+            android:layout_marginRight="5sp"
+            android:contentDescription="@string/img"
+            android:src="@drawable/bee" />
     </RelativeLayout>
 
 </LinearLayout>

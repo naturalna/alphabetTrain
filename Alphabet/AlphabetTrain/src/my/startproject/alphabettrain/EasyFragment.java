@@ -147,8 +147,16 @@ public class EasyFragment extends Fragment implements ITestRecived,
 		}
 		String winPoints = "You win " + points + " points";
 		turnOnProgressDialog("Points", winPoints);
-		UpdatePoints();
 		
+		UpdatePoints();
+		fillTextviewPoints();
+		
+		} catch (Exception ex) {
+			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_LONG).show();
+		}
+	}
+
+	private void fillTextviewPoints() {
 		TextView points = (TextView) getActivity().findViewById(R.id.pointTV);
 		String txt = points.getText().toString();
 		txt = txt.trim();
@@ -156,9 +164,6 @@ public class EasyFragment extends Fragment implements ITestRecived,
 		String pointsText = " " + (lastPoints + this.points);
 		points.setText(pointsText);
 		this.points = 0;
-		} catch (Exception ex) {
-			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_LONG).show();
-		}
 	}
 
 	private void UpdatePoints() {

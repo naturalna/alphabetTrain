@@ -32,6 +32,7 @@ public class CacheLetters {
 	
 	public void CreateDB(List<Item> allItems)
 	{
+		try{
 		datasource = new LocalDataBase(this.context);
 	    datasource.open();
 	    
@@ -40,10 +41,11 @@ public class CacheLetters {
 	    	datasource.createLetter(i);
 	    }
 	    this.items = allItems;
-	   // Bitmap bee = BitmapFactory.decodeResource(this.getResources(), R.drawable.bee);
-	   // Item i1 = new Item(bee,"B");
-	    //Item i2 = new Item(bee,"A");
-	  // datasource.createLetter(i1);
+		}
+		catch(Exception ex){
+			//Toast.makeText(this, "SQLite error ", 300 );
+			System.out.println("Exception! "+ex.toString()); 
+		}
 	}
 	
 	private List<Item> GetAll()
@@ -52,10 +54,20 @@ public class CacheLetters {
 		{
 			datasource = new LocalDataBase(this.context);
 		}
-		
+		try{
 		datasource.open();
+		}
+		catch(Exception ex){
+			System.out.println("Exception! "+ex.toString()); 
+		}
+		
 		List<Item> allItems = new ArrayList<Item>();
+		try{
 		allItems = datasource.getAllLetters();
+		}
+		catch(Exception ex){
+			System.out.println("Exception! "+ex.toString()); 
+		}
 		return allItems;
 	}
 

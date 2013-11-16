@@ -84,50 +84,50 @@ public class HardFragment extends Fragment implements ITestRecived,
 				textRecognition.getStartedTest(bitmap);
 			}
 		});
-		
+
 		Button buttonClear = (Button) getActivity().findViewById(
 				R.id.clearCanvas);
 
 		buttonClear.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				try{
-				bitmap = Bitmap.createBitmap((int) 150, (int) 150,
-						Bitmap.Config.ARGB_8888);
-				canvas = new Canvas(bitmap);
-				path = new Path();
-				Paint clearPaint = new Paint();
-				clearPaint.setXfermode(new PorterDuffXfermode(
-						PorterDuff.Mode.CLEAR));
-				canvas.drawRect(0, 0, 0, 0, clearPaint);
-
-				canvas.drawColor(Color.WHITE);
-				imageView = (ImageView) getActivity().findViewById(
-						R.id.imgCanvas);
-				imageView.setImageBitmap(bitmap);
+				try {
+					bitmap = Bitmap.createBitmap((int) 200, (int) 200,
+							Bitmap.Config.ARGB_8888);
+					canvas = new Canvas(bitmap);
+					path = new Path();
+					Paint clearPaint = new Paint();
+					clearPaint.setXfermode(new PorterDuffXfermode(
+							PorterDuff.Mode.CLEAR));
+					canvas.drawRect(0, 0, 0, 0, clearPaint);
+					canvas.drawColor(Color.WHITE);
+					imageView = (ImageView) getActivity().findViewById(
+							R.id.imgCanvas);
+					imageView.setImageBitmap(bitmap);
 				} catch (Exception ex) {
-					Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG).show();
+					Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG)
+							.show();
 				}
 			}
 		});
 	}
 
 	public void CanvasImage() {
-		try{
-		imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
-		bitmap = Bitmap.createBitmap((int) 150, (int) 150,
-				Bitmap.Config.ARGB_8888);
-		canvas = new Canvas(bitmap);
-		canvas.drawColor(Color.WHITE);
-		paint = new Paint();
-		paint.setColor(Color.BLACK);
-		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeJoin(Paint.Join.ROUND);
-		paint.setStrokeCap(Paint.Cap.ROUND);
-		paint.setStrokeWidth(12);
+		try {
+			imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
+			bitmap = Bitmap.createBitmap((int) 200, (int) 200,
+					Bitmap.Config.ARGB_8888);
+			canvas = new Canvas(bitmap);
+			canvas.drawColor(Color.WHITE);
+			paint = new Paint();
+			paint.setColor(Color.BLACK);
+			paint.setStyle(Paint.Style.STROKE);
+			paint.setStrokeJoin(Paint.Join.ROUND);
+			paint.setStrokeCap(Paint.Cap.ROUND);
+			paint.setStrokeWidth(12);
 
-		imageView.setImageBitmap(bitmap);
+			imageView.setImageBitmap(bitmap);
 
-		imageView.setOnTouchListener(this);
+			imageView.setOnTouchListener(this);
 		} catch (Exception ex) {
 			Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG).show();
 		}
@@ -226,7 +226,7 @@ public class HardFragment extends Fragment implements ITestRecived,
 		turnOnProgressDialog("Points", winPoints);
 
 		UpdatePoints();
-		
+
 		fillTextViewPoints();
 	}
 
@@ -244,21 +244,22 @@ public class HardFragment extends Fragment implements ITestRecived,
 	@Override
 	public void scoreReceivedSucceed(ScoreModel model) {
 		turnOffProgressDialog();
-		try{
-		imageItem = null;
-		DrawCanvasTest();
+		try {
+			imageItem = null;
+			DrawCanvasTest();
 
-		bitmap = Bitmap.createBitmap((int) 150, (int) 150,
-				Bitmap.Config.ARGB_8888);
-		canvas = new Canvas(bitmap);
-		path = new Path();
-		Paint clearPaint = new Paint();
-		clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-		canvas.drawRect(0, 0, 0, 0, clearPaint);
-		canvas.drawColor(Color.WHITE);
-		imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
-		imageView.setImageBitmap(bitmap);
-		this.button.setEnabled(true);
+			bitmap = Bitmap.createBitmap((int) 200, (int) 200,
+					Bitmap.Config.ARGB_8888);
+			canvas = new Canvas(bitmap);
+			path = new Path();
+			Paint clearPaint = new Paint();
+			clearPaint
+					.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+			canvas.drawRect(0, 0, 0, 0, clearPaint);
+			canvas.drawColor(Color.WHITE);
+			imageView = (ImageView) getActivity().findViewById(R.id.imgCanvas);
+			imageView.setImageBitmap(bitmap);
+			this.button.setEnabled(true);
 		} catch (Exception ex) {
 			Toast.makeText(activity, ex.toString(), Toast.LENGTH_LONG).show();
 		}
@@ -271,7 +272,7 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void rankListReceivedSucceed(List<UserScoreModel> model) {
-		
+
 	}
 
 	@Override
@@ -286,7 +287,8 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	@Override
 	public void FaildLettersRecived() {
-		Toast.makeText(activity, "Lrtters not recived", Toast.LENGTH_LONG).show();
+		Toast.makeText(activity, "Lrtters not recived", Toast.LENGTH_LONG)
+				.show();
 	}
 
 	@Override

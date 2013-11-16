@@ -24,4 +24,8 @@ public class EventManagerTest {
         for (ITestRecived listener : listeners)
         	listener.Faild();
     }
+    
+    public void Clear(){
+    	this.listeners.clear();
+    }
 }

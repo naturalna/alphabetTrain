@@ -11,11 +11,6 @@
     tools:context=".TestsActivity" >
 
      <TextView
-         android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:marqueeRepeatLimit="marquee_forever"
         android:textColor="#34C6CD"
         android:textSize="15sp"
         android:id="@+id/helloTV"

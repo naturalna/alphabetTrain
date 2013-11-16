@@ -24,4 +24,8 @@ public class EventManagerImageDownload {
         for (IdownloadedImage listener : listeners)
         	listener.Faild();
     }
+    
+    public void Clear(){  	
+    	listeners.clear();
+    }
 }
