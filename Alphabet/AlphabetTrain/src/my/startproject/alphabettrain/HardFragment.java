@@ -40,23 +40,25 @@ public class HardFragment extends Fragment implements ITestRecived,
 
 	private static SecureRandom random = new SecureRandom();
 	private ScoreRequests requestScores = new ScoreRequests();
-
 	private ArrayList<Item> listcache = new ArrayList<Item>();
+	private Path path = new Path();
+	private ProgressDialog dialog = null;
 	private ImageView imageView;
 	private Bitmap bitmap;
 	private Canvas canvas;
 	private Paint paint;
-	float downx = 0, downy = 0, upx = 0, upy = 0;
-	private Path path = new Path();
 	public TextRecognition textRecognition;
 	private CacheLetters cache;
 	private LetterRequests requester;
 	public Item imageItem;
 	private int randomPosition;
-	private ProgressDialog dialog = null;
-	private Activity activity;
-	private Integer points = 0;
 	private Button button;
+	private Activity activity;
+	float downx = 0;
+	float downy = 0;
+	float upx = 0;
+	float upy = 0;
+	private Integer points = 0;	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

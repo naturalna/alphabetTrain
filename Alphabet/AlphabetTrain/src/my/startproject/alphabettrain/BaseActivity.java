@@ -44,7 +44,8 @@ public class BaseActivity extends Activity {
 			return true;
 		case R.id.buttonLogout:
 			UserLogout.logout();
-			Intent intentLogout = new Intent(BaseActivity.this, MainActivity.class);
+			Intent intentLogout = new Intent(BaseActivity.this,
+					MainActivity.class);
 			startActivity(intentLogout);
 			return true;
 

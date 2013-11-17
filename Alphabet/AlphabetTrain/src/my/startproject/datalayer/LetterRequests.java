@@ -45,12 +45,13 @@ public class LetterRequests {
 							System.out.println(ex.toString());
 							ex.printStackTrace();
 						} catch (Exception exception) {
+							manager.Faild();
 							System.out.println(exception.toString());
 						}
 					}
-					// managerScoresRanklist.sayRecived(list);
 				} else {
 					System.out.println(e.toString());
+					manager.Faild();
 				}
 				manager.Clear();
 			}

@@ -7,9 +7,14 @@ import my.startproject.models.UserScoreModel;
 
 public interface IScoreReceived {
 	public void scoreReceivedSucceed(ScoreModel model);
+
 	public void scoreReceivedFaild(String errorMessage);
+
 	public void rankListReceivedSucceed(List<UserScoreModel> model);
+
 	public void rankListReceivedFaild(String errorMessage);
+
 	public void scoreUserReceivedSucceed(UserScoreModel model);
+
 	public void scoreUserReceivedFaild(String errorMessage);
 }

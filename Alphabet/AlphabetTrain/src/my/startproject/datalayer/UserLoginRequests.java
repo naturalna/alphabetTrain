@@ -11,25 +11,22 @@ import com.parse.ParseUser;
 public class UserLoginRequests {
 	private UserModelSingin userLogin;
 	private final EventManagerSignin managerLogin = new EventManagerSignin();
-	
-	public UserLoginRequests(ISigninListener lis, UserModelSingin user)
-	{
+
+	public UserLoginRequests(ISigninListener lis, UserModelSingin user) {
 		this.managerLogin.addListener(lis);
 		this.userLogin = user;
 	}
-	
-	public void Signin()
-	{
+
+	public void Signin() {
 		ParseUser.logInInBackground(this.userLogin.getUsername(),
-				this.userLogin.getPassword(),
-				new LogInCallback() {
-			  		public void done(ParseUser user, ParseException e) {
-				    if (user != null) {
-				      managerLogin.saySucceed();
-				    } else {
-				      managerLogin.sayFaild();
-				    }
-			  	}
-			});	
+				this.userLogin.getPassword(), new LogInCallback() {
+					public void done(ParseUser user, ParseException e) {
+						if (user != null) {
+							managerLogin.saySucceed();
+						} else {
+							managerLogin.sayFaild();
+						}
+					}
+				});
 	}
 }

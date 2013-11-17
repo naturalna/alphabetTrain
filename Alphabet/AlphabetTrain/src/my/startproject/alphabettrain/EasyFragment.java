@@ -31,17 +31,17 @@ import android.widget.Toast;
 public class EasyFragment extends Fragment implements ITestRecived,
 		IScoreReceived {
 
-	private CacheLetters cache;
-	private List<Integer> positions;
-	private static SecureRandom random = new SecureRandom();
-	private GridView gridView;
-	private ArrayList<Item> randomArray = new ArrayList<Item>();
-	private CustomGridViewAdapter customGridAdapter;
-	private LetterRequests requester;
 	private ScoreRequests requestScores = new ScoreRequests();
 	private ArrayList<Item> listcache = new ArrayList<Item>();
-	private Button button;
+	private ArrayList<Item> randomArray = new ArrayList<Item>();
+	private static SecureRandom random = new SecureRandom();
 	private ProgressDialog dialog = null;
+	private CacheLetters cache;
+	private List<Integer> positions;
+	private GridView gridView;
+	private CustomGridViewAdapter customGridAdapter;
+	private LetterRequests requester;
+	private Button button;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -138,7 +138,6 @@ public class EasyFragment extends Fragment implements ITestRecived,
 					.findViewById(R.id.user_response);
 			String text = editText.getText().toString();
 
-			//text = text.toUpperCase(Locale.ENGLISH);
 			if (text.equalsIgnoreCase(randomArray.get(i).getTitle())) {
 				this.points += 2;
 			}

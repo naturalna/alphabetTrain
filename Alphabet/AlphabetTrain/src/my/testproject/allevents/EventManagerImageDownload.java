@@ -5,27 +5,26 @@ import java.util.List;
 
 import my.startproject.datalayer.Item;
 
-
 public class EventManagerImageDownload {
 	private List<IdownloadedImage> listeners = new ArrayList<IdownloadedImage>();
 
-    public void addListener(IdownloadedImage listener) {
-        this.listeners.add(listener);
-    }
+	public void addListener(IdownloadedImage listener) {
+		this.listeners.add(listener);
+	}
 
-    public void saySucceed(Item item) {
-        // Notify everybody that may be interested.
-        for (IdownloadedImage listener : listeners)
-        	listener.Succeed(item);
-    }
-    
-    public void Faild() {
-        // Notify everybody that may be interested.
-        for (IdownloadedImage listener : listeners)
-        	listener.Faild();
-    }
-    
-    public void Clear(){  	
-    	listeners.clear();
-    }
+	public void saySucceed(Item item) {
+		// Notify everybody that may be interested.
+		for (IdownloadedImage listener : listeners)
+			listener.Succeed(item);
+	}
+
+	public void Faild() {
+		// Notify everybody that may be interested.
+		for (IdownloadedImage listener : listeners)
+			listener.Faild();
+	}
+
+	public void Clear() {
+		listeners.clear();
+	}
 }

@@ -17,12 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TextRecognition {
-	private static Context ctx;
+	private EventManegerLetterRecived lettersRequest;
 	private String resultUrl = "result.txt";
 	private String imageFilePath = null;
+	private static Context ctx;
 	private TextView tv;
 	private static HardFragment frag;
-	private EventManegerLetterRecived lettersRequest;
 
 	public TextRecognition(Context context, HardFragment fr) {
 		ctx = context;
@@ -39,7 +39,7 @@ public class TextRecognition {
 
 	public void updateResults() {
 		try {
-			
+
 			lettersRequest.addListener(frag);
 			StringBuffer contents = new StringBuffer();
 
@@ -51,16 +51,15 @@ public class TextRecognition {
 				contents.append(text).append(
 						System.getProperty("line.separator"));
 			}
-			
-			ResultString = contents.toString().trim().charAt(0) +"";
-			
-			Toast.makeText(ctx,contents.toString(), Toast.LENGTH_LONG).show();
+
+			ResultString = contents.toString().trim().charAt(0) + "";
+
+			Toast.makeText(ctx, contents.toString(), Toast.LENGTH_LONG).show();
 			lettersRequest.saySucceed(contents.toString());
 			lettersRequest.Clear();
-			
-			// displayMessage(contents.toString());
+
 		} catch (Exception e) {
-			// displayMessage("Error: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -77,26 +76,26 @@ public class TextRecognition {
 
 		try {
 			fOut = new FileOutputStream(file);
-			Bitmap resizedBitmap = Bitmap.createScaledBitmap(bmp, 100, 100, false);
+			Bitmap resizedBitmap = Bitmap.createScaledBitmap(bmp, 100, 100,
+					false);
 			// R.drawable.apple);
-			
+
 			resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
 			fOut.flush();
 			fOut.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return file;
 	}
 
-	/*private void displayMessage(String text) {
-		tv.post(new MessagePoster(text));
-	}*/
+	/*
+	 * private void displayMessage(String text) { tv.post(new
+	 * MessagePoster(text)); }
+	 */
 
 	class MessagePoster implements Runnable {
 		public MessagePoster(String message) {

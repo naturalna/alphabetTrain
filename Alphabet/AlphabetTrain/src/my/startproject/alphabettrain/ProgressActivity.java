@@ -53,19 +53,21 @@ public class ProgressActivity extends ListActivity implements IScoreReceived {
 
 	@Override
 	public void rankListReceivedSucceed(List<UserScoreModel> model) {
-		try{
-		for (int i = 0; i < model.size(); i++) {
-			UserScoreModel user = model.get(i);
+		try {
+			for (int i = 0; i < model.size(); i++) {
+				UserScoreModel user = model.get(i);
 
-			values.add("Points : " + user.getPoints() + " Username : "
-					+ user.getUsername());
-		}
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(ProgressActivity.this,
-				android.R.layout.simple_list_item_1, values);
-		setListAdapter(adapter);
-		}catch(Exception ex){
-			Toast.makeText(this, "Please restart and try again", Toast.LENGTH_LONG).show();
+				values.add("Points : " + user.getPoints() + " Username : "
+						+ user.getUsername());
+			}
+
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					ProgressActivity.this, android.R.layout.simple_list_item_1,
+					values);
+			setListAdapter(adapter);
+		} catch (Exception ex) {
+			Toast.makeText(this, "Please restart and try again",
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -75,7 +77,7 @@ public class ProgressActivity extends ListActivity implements IScoreReceived {
 	}
 
 	@Override
-	public void scoreUserReceivedSucceed(UserScoreModel model) {		
+	public void scoreUserReceivedSucceed(UserScoreModel model) {
 	}
 
 	@Override

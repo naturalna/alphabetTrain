@@ -13,16 +13,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SigninActivity extends Activity implements ISigninListener {
+	private Boolean isValid = true;
+	private ProgressDialog dialog = null;
+	private EditText userid;
+	private EditText password;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signin);
 	}
-
-	private EditText userid;
-	private EditText password;
-	private Boolean isValid = true;
-	private ProgressDialog dialog = null;
 
 	private String getUserid() {
 		userid = (EditText) findViewById(R.id.userid);
@@ -33,46 +32,45 @@ public class SigninActivity extends Activity implements ISigninListener {
 		password = (EditText) findViewById(R.id.password);
 		return password.getText().toString().trim();
 	}
-	
-	private boolean Validate(String username, String password)
-	{
+
+	private boolean Validate(String username, String password) {
 		String regex = "^[a-zA-Z]+$";
-		
-		if(username.length() < 5)
-		{
+
+		if (username.length() < 5) {
 			this.isValid = false;
 		}
-		if(!username.matches(regex)){
+		if (!username.matches(regex)) {
 			this.isValid = false;
 		}
-		if(password.length() < 5)
-		{
+		if (password.length() < 5) {
 			this.isValid = false;
 		}
-		if(!password.matches(regex)){
+		if (!password.matches(regex)) {
 			this.isValid = false;
 		}
-		
+
 		return true;
 	}
 
 	private View view;
+
 	public void login(View v) {
 		view = v;
 		String sUserid = getUserid();
 		String sPassword = getPassword();
-		
-		this.Validate(sUserid, sPassword);
-		if(this.isValid){
-		UserModelSingin user = new UserModelSingin(sUserid, sPassword);
 
-		turnOnProgressDialog("Login", "Wait while we log you in");
-		UserLoginRequests requests = new UserLoginRequests(SigninActivity.this,
-				user);
-		requests.Signin();
-		}else{
+		this.Validate(sUserid, sPassword);
+		if (this.isValid) {
+			UserModelSingin user = new UserModelSingin(sUserid, sPassword);
+
+			turnOnProgressDialog("Login", "Wait while we log you in");
+			UserLoginRequests requests = new UserLoginRequests(
+					SigninActivity.this, user);
+			requests.Signin();
+		} else {
 			this.isValid = true;
-			Toast.makeText(this,"Login faild!Incorrect username or password", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Login faild!Incorrect username or password",
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -88,7 +86,7 @@ public class SigninActivity extends Activity implements ISigninListener {
 	public void signinSucceed() {
 		this.turnOffProgressDialog();
 		Intent homeIntent = new Intent(SigninActivity.this, HomeActivity.class);
-		//startActivity(homeIntent);
+		// startActivity(homeIntent);
 		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(view, 0,
 				0, view.getWidth(), view.getHeight());
 		startActivity(homeIntent, options.toBundle());
@@ -105,9 +103,9 @@ public class SigninActivity extends Activity implements ISigninListener {
 	public void resetPassword(View v) {
 		Intent homeIntent = new Intent(SigninActivity.this,
 				RessetPasswordActivity.class);
-		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(v, 0,
-				0, v.getWidth(), v.getHeight());
+		ActivityOptions options = ActivityOptions.makeScaleUpAnimation(v, 0, 0,
+				v.getWidth(), v.getHeight());
 		startActivity(homeIntent, options.toBundle());
-		//startActivity(homeIntent);
+		// startActivity(homeIntent);
 	}
 }

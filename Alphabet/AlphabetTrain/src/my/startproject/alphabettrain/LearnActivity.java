@@ -24,14 +24,13 @@ import android.widget.Toast;
 
 public class LearnActivity extends BaseActivity implements IdownloadedImage,
 		TextToSpeech.OnInitListener {
-
-	private GridView gridView;
 	private ArrayList<Item> gridArray = new ArrayList<Item>();
+	private ProgressDialog dialog = null;
 	private CustomGridViewAdapter customGridAdapter;
 	private LetterRequests requester;
+	private GridView gridView;
 	private String text;
 	private TextToSpeech tts;
-	private ProgressDialog dialog = null;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class LearnActivity extends BaseActivity implements IdownloadedImage,
 			tts.setLanguage(Locale.ENGLISH);
 			tts.setPitch(1);
 			tts.setSpeechRate(1);
-			
+
 		} catch (Exception ex) {
 			Toast.makeText(this, "Please restart and try again" + ex,
 					Toast.LENGTH_LONG).show();
@@ -116,7 +115,9 @@ public class LearnActivity extends BaseActivity implements IdownloadedImage,
 
 	@Override
 	public void Faild() {
-
+		this.turnOffProgressDialog();
+		Toast.makeText(LearnActivity.this, "no internet connection",
+				Toast.LENGTH_LONG).show();
 	}
 
 	@Override

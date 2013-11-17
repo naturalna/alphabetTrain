@@ -49,13 +49,13 @@ public class LocalDataBase {
 	}
 
 	private Item cursorToItem(Cursor cursor) {
-		
+
 		Item item = new Item();
-		try{
-		item.setId(cursor.getLong(0));
-		item.setTitle(cursor.getString(1));
-		byte[] img = cursor.getBlob(2);
-		item.setImage(BitmapFactory.decodeByteArray(img, 0, img.length));
+		try {
+			item.setId(cursor.getLong(0));
+			item.setTitle(cursor.getString(1));
+			byte[] img = cursor.getBlob(2);
+			item.setImage(BitmapFactory.decodeByteArray(img, 0, img.length));
 		} catch (Exception exception) {
 			System.out.println(exception.toString());
 		}

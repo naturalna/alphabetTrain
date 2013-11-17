@@ -25,7 +25,7 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 	private EasyFragment fragmentEasy;
 	private HardFragment fragmentHard;
 	private Typewriter writer;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tests);
@@ -125,22 +125,23 @@ public class TestsActivity extends BaseActivity implements IScoreReceived {
 		try {
 			TextView helloUser = (TextView) findViewById(R.id.helloTV);
 			String greatings = "Hello, " + model.getUsername();
-			//helloUser.setText(greatings);
+			// helloUser.setText(greatings);
 			writer = new Typewriter(this, helloUser);
 			writer.setCharacterDelay(100);
 			writer.animateText(greatings);
-			
+
 			TextView pointsTextView = (TextView) findViewById(R.id.textLabel);
 			String pointsGreating = "Points:";
 			writer = new Typewriter(this, pointsTextView);
 			writer.setCharacterDelay(100);
 			writer.animateText(pointsGreating);
-			
+
 			TextView points = (TextView) findViewById(R.id.pointTV);
 			String pointsText = " " + model.getPoints();
 			points.setText(pointsText);
 		} catch (Exception ex) {
-			Toast.makeText(this, "User points not calculate! Please restart!", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "User points not calculate! Please restart!",
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
