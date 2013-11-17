@@ -32,4 +32,15 @@
         android:textColor="#34C6CD"
         android:textSize="25sp" />
 
+    <TextView
+        android:id="@+id/tap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pointTV"
+        android:layout_below="@+id/pointTV"
+        android:layout_marginTop="30dp"
+        android:text="@string/tap"
+        android:textColor="#34C6CD"
+        android:textSize="25sp" />
+
 </RelativeLayout>
